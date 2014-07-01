@@ -106,7 +106,7 @@ public class Stage2 extends Stage {
 	public void init(GraphicsInfo ginfo) {
 		this.player.position.x = 400;
 		this.player.position.y = 520;
-		this.player.life = true;
+//		this.player.life = true;
 		this.enemy.position.x = 300;
 		this.enemy.position.y = -100;
 		this.enemy.init();
@@ -161,20 +161,20 @@ public class Stage2 extends Stage {
 		}
 		if(this.enemy.life > 0){
 			if(this.enemy.hitTest(this.player) == true){
-				this.player.life = false;
+//				this.player.life = false;
 				return true;
 			}
 		}
 		if(this.enemy2.life > 0){
 			if(this.enemy2.hitTest(this.player) == true){
-				this.player.life = false;
+//				this.player.life = false;
 				return true;
 			}
 		}
 		for(int i=0; i<MAX_BULLETS_E; i++){
 			if(this.bullets_e.get(i).visible == true){
 				if(this.bullets_e.get(i).hitTest(this.player) == true){
-					this.player.life = false;
+//					this.player.life = false;
 					return true;
 				}
 			}

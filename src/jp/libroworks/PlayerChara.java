@@ -1,14 +1,6 @@
 package jp.libroworks;
 
-import java.util.ArrayList;
-
-import javax.sound.sampled.Clip;
-
-import jp.libroworks.movers.StraightMover;
-import jp.libroworks.stage.Stage1;
-import jp.libroworks.supers.BulletChara;
 import jp.libroworks.supers.GameChara;
-import jp.libroworks.supers.SoundBox;
 import jp.libroworks.supers.Stage;
 import jp.libroworks.supers.Vector2D;
 
@@ -18,7 +10,7 @@ public class PlayerChara extends GameChara {
 	int searchidx = 0;
 	int shootcount = 0;
 	Vector2D shootvec = new Vector2D(0, -500);
-	public boolean life = true;
+//	public boolean life = true;
 
 	public PlayerChara(){
 		this.size = 8;
@@ -26,7 +18,7 @@ public class PlayerChara extends GameChara {
 
 	@Override
 	public GameChara draw(GraphicsInfo ginfo, Stage stage) {
-		if(this.life == false) return super.draw(ginfo, stage);
+//		if(this.life == false) return super.draw(ginfo, stage);
 		//キー入力
 		if(ginfo.keystate[KEY_STATE.LEFT]){
 			this.position.x -= PlayerChara.SPEED * ginfo.frametime;

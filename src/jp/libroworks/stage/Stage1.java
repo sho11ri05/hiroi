@@ -33,6 +33,8 @@ public class Stage1 extends Stage {
 	public static final int BLUEBULLET_E = 2;
 	public static final int PURPLEBULLET_E = 3;
 	public static final int BULLET_J = 4;
+	int score =0;
+
 
 	@Override
 	public GameChara getPlayer() {
@@ -55,6 +57,7 @@ public class Stage1 extends Stage {
 		this.img_bullets.add(this.img_shot.getSubimage(0, 24, 24, 48));
 		//サウンド
 		try {
+			//自機が当たった時の音
 			SoundBox.singleton.loadSound(
 					new File("media/bom34.wav"));
 			SoundBox.singleton.loadSound(
@@ -100,7 +103,7 @@ public class Stage1 extends Stage {
 		this.player.position.x = 50;
 //		this.player.position.y = 520;　プレイヤー縦配置
 		this.player.position.y = 320;
-		this.player.life = true;
+//		this.player.life = true;
 		this.enemy.position.x = 400;
 		this.enemy.position.y = -100;
 		this.enemy.init();
@@ -142,13 +145,16 @@ public class Stage1 extends Stage {
 //			}
 //		}
 		if(this.getEnemy().hitTest(this.player) == true){
-			this.player.life = false;
+//			this.player.life = false;
 			return true;
 		}
+		//敵の弾の当たり値
 		for(int i=0; i<MAX_BULLETS_E; i++){
 			if(this.bullets_e.get(i).visible == true){
 				if(this.bullets_e.get(i).hitTest(this.player) == true){
-					this.player.life = false;
+					score =score + 10;
+					this.bullets_e.get(i).visible = false;
+//					this.player.life = false;
 					return true;
 				}
 			}

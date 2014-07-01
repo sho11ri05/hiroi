@@ -13,7 +13,6 @@ import javax.imageio.ImageIO;
 import jp.libroworks.stage.Stage1;
 import jp.libroworks.stage.Stage2;
 import jp.libroworks.supers.GameDisplay;
-import jp.libroworks.supers.SoundBox;
 import jp.libroworks.supers.Stage;
 
 public class MyGameDisplay extends GameDisplay {
@@ -25,6 +24,7 @@ public class MyGameDisplay extends GameDisplay {
 	ArrayList<Stage> stagelist = new ArrayList<Stage>();
 	Stage stage = null;
 	int stagenum = 0;
+	int sukoa = 0;
 
 	public MyGameDisplay(){
 		this.title = new MyGameTitle();
@@ -46,7 +46,7 @@ public class MyGameDisplay extends GameDisplay {
 		this.title.loadMedia();
 		this.main.loadMedia();
 		this.over.loadMedia();
-		this.clear.loadMedia();
+//		this.clear.loadMedia();
 		for(int i=0; i<this.stagelist.size(); i++){
 			this.stagelist.get(i).loadMedia();
 		}
@@ -88,19 +88,24 @@ public class MyGameDisplay extends GameDisplay {
 
 		public void show(GraphicsInfo ginfo) {
 			MyGameDisplay.this.stage.draw(ginfo);
+//			if(MyGameDisplay.this.stage.hitTestAll(ginfo) == true){
+//				GameDisplay.current = MyGameDisplay.this.over;
+//				GameDisplay.current.setStartTime(ginfo.currenttime);
+//				SoundBox.singleton.playOneSHot(0);
+//			}
+//			if(MyGameDisplay.this.stage.isBossLiving() == false){
+//				GameDisplay.current = MyGameDisplay.this.clear;
+//				GameDisplay.current.setStartTime(ginfo.currenttime);
+//				SoundBox.singleton.playOneSHot(3);
+//			}
+			if(ginfo.currenttime - this.starttime > 180000){
+				GameDisplay.current = MyGameDisplay.this.over;
+				GameDisplay.current.setStartTime(ginfo.currenttime);
+			}
+
 			if(MyGameDisplay.this.stage.hitTestAll(ginfo) == true){
-				GameDisplay.current = MyGameDisplay.this.over;
-				GameDisplay.current.setStartTime(ginfo.currenttime);
-				SoundBox.singleton.playOneSHot(0);
-			}
-			if(MyGameDisplay.this.stage.isBossLiving() == false){
-				GameDisplay.current = MyGameDisplay.this.clear;
-				GameDisplay.current.setStartTime(ginfo.currenttime);
-				SoundBox.singleton.playOneSHot(3);
-			}
-			if(ginfo.currenttime - this.starttime > 5000){
-				GameDisplay.current = MyGameDisplay.this.over;
-				GameDisplay.current.setStartTime(ginfo.currenttime);
+				sukoa += 10;
+//				this.bullets_e.clear();
 			}
 		}
 
@@ -122,9 +127,10 @@ public class MyGameDisplay extends GameDisplay {
 			int strw = fm.stringWidth(str) / 2;
 			ginfo.g.drawString(str, 400 - strw, 200);
 
-			if(ginfo.currenttime - this.starttime > 5000){
-				GameDisplay.current = MyGameDisplay.this.title;
-			}
+//			if(ginfo.currenttime - this.starttime > 5000){
+//				GameDisplay.current = MyGameDisplay.this.title;
+//			}
+
 		}
 
 		@Override

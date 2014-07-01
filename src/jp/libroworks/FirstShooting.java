@@ -25,7 +25,7 @@ public class FirstShooting {
 
 	//コンストラクタ
 	FirstShooting(){
-		this.mainwindow = new JFrame("ミニゲーム１");
+		this.mainwindow = new JFrame("ものひろいゲーム");
 		this.mainwindow.
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.mainwindow.setSize(780, 580);
@@ -52,9 +52,9 @@ public class FirstShooting {
 		t.schedule(new RenderTask(), 0, 16);
 //		t.schedule(GameDisplay.current = MyGameDisplay.this.over, 180);
 	}
-	
+
 	void stop(){
-		
+
 	}
 
 	long lasttime = System.currentTimeMillis();
