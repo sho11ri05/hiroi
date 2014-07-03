@@ -24,7 +24,6 @@ public class MyGameDisplay extends GameDisplay {
 	ArrayList<Stage> stagelist = new ArrayList<Stage>();
 	Stage stage = null;
 	int stagenum = 0;
-	int sukoa = 0;
 
 	public MyGameDisplay(){
 		this.title = new MyGameTitle();
@@ -104,8 +103,6 @@ public class MyGameDisplay extends GameDisplay {
 			}
 
 			if(MyGameDisplay.this.stage.hitTestAll(ginfo) == true){
-				sukoa += 10;
-//				this.bullets_e.clear();
 			}
 		}
 
@@ -126,10 +123,6 @@ public class MyGameDisplay extends GameDisplay {
 			FontMetrics fm = ginfo.g.getFontMetrics();
 			int strw = fm.stringWidth(str) / 2;
 			ginfo.g.drawString(str, 400 - strw, 200);
-
-//			if(ginfo.currenttime - this.starttime > 5000){
-//				GameDisplay.current = MyGameDisplay.this.title;
-//			}
 
 		}
 

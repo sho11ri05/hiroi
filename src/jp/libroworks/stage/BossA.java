@@ -1,7 +1,6 @@
 package jp.libroworks.stage;
 
 import java.awt.Color;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
@@ -11,7 +10,6 @@ import jp.libroworks.shooters.CrossShooter;
 import jp.libroworks.shooters.RollingShooter;
 import jp.libroworks.shooters.SplatterShooter;
 import jp.libroworks.shooters.WideShooter;
-import jp.libroworks.supers.Effect;
 import jp.libroworks.supers.GameChara;
 import jp.libroworks.supers.Pattern;
 import jp.libroworks.supers.Stage;
@@ -56,19 +54,19 @@ public class BossA extends GameChara {
 		this.life = 200;
 	}
 
-	Ellipse2D.Double auraelli = new Ellipse2D.Double(0,0, 240, 240);
+//	Ellipse2D.Double auraelli = new Ellipse2D.Double(0,0, 240, 240);
 	Line2D.Double lifemeter = new Line2D.Double(10, 60, 10, 60);
 	@Override
 	public GameChara draw(GraphicsInfo ginfo, Stage stage) {
-		if(this.life < 1) return super.draw(ginfo, stage);
-		float alpha = (float)Effect.linear(ginfo, 3000, 0.8, 0.0);
-		ginfo.g.setColor(new Color(1.0f, 1.0f, 0.0f, alpha));
-		double size = Effect.linear(ginfo, 3000, 80, 320);
-		this.auraelli.x = this.position.x - size / 2;
-		this.auraelli.y = this.position.y - size / 2;
-		this.auraelli.width = size;
-		this.auraelli.height = size;
-		ginfo.g.fill(this.auraelli);
+//		if(this.life < 1) return super.draw(ginfo, stage);
+//		float alpha = (float)Effect.linear(ginfo, 3000, 0.8, 0.0);
+//		ginfo.g.setColor(new Color(1.0f, 1.0f, 0.0f, alpha));
+//		double size = Effect.linear(ginfo, 3000, 80, 320);
+//		this.auraelli.x = this.position.x - size / 2;
+//		this.auraelli.y = this.position.y - size / 2;
+//		this.auraelli.width = size;
+//		this.auraelli.height = size;
+//		ginfo.g.fill(this.auraelli);
 
 		if(this.curpat == null) return super.draw(ginfo, stage);
 
@@ -218,7 +216,6 @@ public class BossA extends GameChara {
 	//発射2
 	class PatternShootA2 extends PatternHalt{
 		private long lastshooting = 0;
-		private long lastshooting2 = 0;
 
 		PatternShootA2(long l) {
 			super(l);
