@@ -1,5 +1,8 @@
 package jp.libroworks.stage;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +37,7 @@ public class Stage1 extends Stage {
 	public static final int PURPLEBULLET_E = 3;
 	public static final int BULLET_J = 4;
 	int score =0;
+	private Font mfont = new Font("Sanserif", Font.BOLD, 30);
 
 
 	@Override
@@ -159,6 +163,14 @@ public class Stage1 extends Stage {
 				}
 			}
 		}
+
+		//スコア
+		ginfo.g.setColor(Color.BLUE);
+		ginfo.g.setFont(Stage1.this.mfont);
+		String str = "Total Score："+score;
+		FontMetrics fm = ginfo.g.getFontMetrics();
+		int strw = fm.stringWidth(str) / 2;
+		ginfo.g.drawString(str, 650 - strw, 100);
 
 		return false;
 	}
