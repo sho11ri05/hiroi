@@ -124,7 +124,6 @@ public class Stage2 extends Stage {
 		}
 	}
 
-	@Override
 	public ArrayList<BulletChara> getBullets_E() {
 		return this.bullets_e;
 	}
@@ -187,6 +186,24 @@ public class Stage2 extends Stage {
 	public boolean isBossLiving() {
 		if(this.enemy.life < 1 && this.enemy2.life < 1) return false;
 		return true;
+	}
+
+	@Override
+	public ArrayList<BulletChara> getYuki1() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public ArrayList<BulletChara> getYuki2() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public ArrayList<BulletChara> getAme() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}
 
 }

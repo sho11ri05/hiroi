@@ -23,22 +23,30 @@ public class Stage1 extends Stage {
 	private PlayerChara player = new PlayerChara();
 	private BufferedImage img_chara, img_back, img_shot;
 	private BossA enemy = new BossA();
-	public static final int MAX_BULLETS_E = 200;
-	private ArrayList<BulletChara> bullets_e =
-			new ArrayList<BulletChara>(MAX_BULLETS_E);
-//	public static final int MAX_BULLETS_J = 20;　自機からの弾の発射
-//	private ArrayList<BulletChara> bullets_j =
-//			new ArrayList<BulletChara>(MAX_BULLETS_J);
+	public static final int YUKI_1 = 2000;
+	public static final int YUKI_2 = 2000;
+	public static final int AME = 2000;
+
+//	private ArrayList<BulletChara> bullets_1 = new ArrayList<BulletChara>(YUKI_1);
+//	private ArrayList<BulletChara> bullets_2 = new ArrayList<BulletChara>(YUKI_2);
+//	private ArrayList<BulletChara> bullets_3 = new ArrayList<BulletChara>(AME);
+
+	private ArrayList<BulletChara> yuki1 =
+			new ArrayList<BulletChara>(YUKI_1);
+	private ArrayList<BulletChara> yuki2 =
+			new ArrayList<BulletChara>(YUKI_2);
+	private ArrayList<BulletChara> ame =
+			new ArrayList<BulletChara>(AME);
+
 	private ArrayList<BufferedImage> img_bullets =
 			new ArrayList<BufferedImage>();
-	public static final int REDBULLET_E = 0;
-	public static final int GREENBULLET_E = 1;
-	public static final int BLUEBULLET_E = 2;
-	public static final int PURPLEBULLET_E = 3;
-	public static final int BULLET_J = 4;
-	int score =0;
-	private Font mfont = new Font("Sanserif", Font.BOLD, 30);
+	public static int REDBULLET_E = 0 ;
+	public static int GREENBULLET_E = 1;
+	public static int BLUEBULLET_E = 2;
+	//finalを消した
 
+	private int score =0;
+	private Font mfont = new Font("Sanserif", Font.BOLD, 30);
 
 	@Override
 	public GameChara getPlayer() {
@@ -47,18 +55,16 @@ public class Stage1 extends Stage {
 
 	@Override
 	public void loadMedia() throws IOException {
-		this.img_chara = ImageIO.read(new File("media/chara.png"));
+		this.img_chara = ImageIO.read(new File("gazou/zeusu.png"));
 		this.player.setImage(
-				this.img_chara.getSubimage(0,  0, 48, 48));
-//		this.enemy.setImage(
-//				this.img_chara.getSubimage(0, 72, 192, 192));
+				this.img_chara.getSubimage(0,  0, 100, 100));
 		this.img_back = ImageIO.read(new File("gazou/hiroi2-2.jpg"));
-		this.img_shot = ImageIO.read(new File("media/shot.png"));
-		this.img_bullets.add(this.img_shot.getSubimage(0, 0, 24, 24));
-		this.img_bullets.add(this.img_shot.getSubimage(48, 0, 24, 24));
-		this.img_bullets.add(this.img_shot.getSubimage(24, 0, 24, 24));
-		this.img_bullets.add(this.img_shot.getSubimage(72, 0, 24, 24));
-		this.img_bullets.add(this.img_shot.getSubimage(0, 24, 24, 48));
+		this.img_shot = ImageIO.read(new File("gazou/yuki.png"));
+		this.img_bullets.add(this.img_shot.getSubimage(0, 0, 34, 34));
+		this.img_bullets.add(this.img_shot.getSubimage(35, 0, 25, 25));
+		this.img_bullets.add(this.img_shot.getSubimage(60, 0, 45, 45));
+//		this.img_yuki1 = ImageIO.read(new File("gagou/yuki1.gif"));
+
 		//サウンド
 		try {
 			//自機が当たった時の音
@@ -89,9 +95,19 @@ public class Stage1 extends Stage {
 		ginfo.g.drawImage(this.img_back, 0, 0, null);
 		this.enemy.draw(ginfo, this);
 		this.player.draw(ginfo, this);
-		for(int i=0; i<MAX_BULLETS_E; i++){
-			if(this.bullets_e.get(i).visible == true){
-				this.bullets_e.get(i).draw(ginfo, this);
+		for(int i=0; i<YUKI_1; i++){
+			if(this.yuki1.get(i).visible == true){
+				this.yuki1.get(i).draw(ginfo, this);
+			}
+		}
+		for(int j=0; j<YUKI_2; j++){
+			if(this.yuki2.get(j).visible == true){
+				this.yuki2.get(j).draw(ginfo, this);
+			}
+		}
+		for(int k=0; k<AME; k++){
+			if(this.ame.get(k).visible == true){
+				this.ame.get(k).draw(ginfo, this);
 			}
 		}
 //		for(int i=0; i<MAX_BULLETS_J; i++){  自機からの弾の発射
@@ -112,9 +128,17 @@ public class Stage1 extends Stage {
 		this.enemy.position.y = -100;
 		this.enemy.init();
 		//弾の初期化
-		this.bullets_e.clear();
-		for(int i=0; i<MAX_BULLETS_E; i++){
-			this.bullets_e.add(new BulletChara());
+		this.yuki1.clear();
+		for(int i=0; i<YUKI_1; i++){
+			this.yuki1.add(new BulletChara());
+		}
+		this.yuki2.clear();
+		for(int j=0; j<YUKI_2; j++){
+			this.yuki2.add(new BulletChara());
+		}
+		this.ame.clear();
+		for(int k=0; k<AME; k++){
+			this.ame.add(new BulletChara());
 		}
 //		this.bullets_j.clear();
 //		for(int i=0; i<MAX_BULLETS_J; i++){
@@ -123,8 +147,18 @@ public class Stage1 extends Stage {
 	}
 
 	@Override
-	public ArrayList<BulletChara> getBullets_E() {
-		return this.bullets_e;
+	public ArrayList<BulletChara> getYuki1() {
+		return this.yuki1;
+	}
+
+	@Override
+	public ArrayList<BulletChara> getYuki2() {
+		return this.yuki2;
+	}
+
+	@Override
+	public ArrayList<BulletChara> getAme() {
+		return this.ame;
 	}
 
 	@Override
@@ -152,17 +186,33 @@ public class Stage1 extends Stage {
 //			this.player.life = false;
 			return true;
 		}
+
+
+
 		//敵の弾の当たり値
-		for(int i=0; i<MAX_BULLETS_E; i++){
-			if(this.bullets_e.get(i).visible == true){
-				if(this.bullets_e.get(i).hitTest(this.player) == true){
-					score =score + 10;
-					this.bullets_e.get(i).visible = false;
-//					this.player.life = false;
+		for(int i=0; i<2000; i++){
+			if(this.yuki1.get(i).visible == true){
+				if(this.yuki1.get(i).hitTest(this.player) == true){
+					score = score + 10;
+					this.yuki1.get(REDBULLET_E).visible = false;
+ //					this.player.life = false;
+					return true;
+				}
+			}else if(this.yuki2.get(i).visible == true){
+				if(this.yuki2.get(i).hitTest(this.player) == true){
+					score = score +20;
+					this.yuki2.get(GREENBULLET_E).visible = false;
+					return true;
+				}
+			}else if(this.ame.get(i).visible == true){
+				if(this.ame.get(i).hitTest(this.player) == true){
+					score = score + 30;
+					this.ame.get(BLUEBULLET_E).visible = false;
 					return true;
 				}
 			}
 		}
+
 
 		//スコア
 		ginfo.g.setColor(Color.BLUE);
@@ -171,14 +221,17 @@ public class Stage1 extends Stage {
 		FontMetrics fm = ginfo.g.getFontMetrics();
 		int strw = fm.stringWidth(str) / 2;
 		ginfo.g.drawString(str, 650 - strw, 100);
-
 		return false;
+
+
 	}
+
 
 	@Override
 	public boolean isBossLiving() {
 		if(this.enemy.life < 1) return false;
 		return true;
 	}
+
 
 }

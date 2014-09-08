@@ -15,18 +15,6 @@ public abstract class GameDisplay {
 		this.starttime = st;
 	}
 
-//	public void getEndTime(long ls){
-//		this.endtime = ls;
-//	}
-
-//	public void setStartTime(long st){
-//	this.starttime = st;
-//	for(st = 0 ; st <180 ; st++){
-
-//	}
-//}
-
-
 	//現在のディスプレイを返す
 	public GameDisplay getCurrentDisplay(){
 		return GameDisplay.current;

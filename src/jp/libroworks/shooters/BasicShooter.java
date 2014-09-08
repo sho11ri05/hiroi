@@ -24,7 +24,7 @@ public class BasicShooter extends Shooter {
 		bullet.position.y = 10;
 		bullet.vector.x = 0;
 		bullet.vector.y = 400;
-		bullet.setImage(stage.getBulletImage(Stage1.PURPLEBULLET_E));
+		bullet.setImage(stage.getBulletImage(Stage1.GREENBULLET_E));
 		bullet.setVisible(ginfo, true);
 	}
 

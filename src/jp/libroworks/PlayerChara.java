@@ -13,7 +13,7 @@ public class PlayerChara extends GameChara {
 //	public boolean life = true;
 
 	public PlayerChara(){
-		this.size = 8;
+		this.size = 50;
 	}
 
 	@Override

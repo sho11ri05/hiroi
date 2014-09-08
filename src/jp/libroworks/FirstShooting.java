@@ -17,6 +17,11 @@ public class FirstShooting {
 	public static void main(String[] args) {
 		FirstShooting fst = new FirstShooting();
 		fst.start();
+
+		final int yuki1 = 1;
+		final int yuki2 = 2;
+		final int ame = 3;
+
 	}
 
 	JFrame mainwindow;

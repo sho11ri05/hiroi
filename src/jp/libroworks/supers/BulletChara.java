@@ -7,6 +7,16 @@ public class BulletChara extends GameChara {
 	public BulletMover mover = null;
 	protected long starttime;
 	public Vector2D vector = new Vector2D();
+	private int kind;
+
+
+	public int getKind() {
+		return kind;
+	}
+
+	public void setKind(int k) {
+		this.kind = k;
+	}
 
 	public BulletChara(){
 		this.visible = false;

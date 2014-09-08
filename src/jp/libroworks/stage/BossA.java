@@ -1,7 +1,5 @@
 package jp.libroworks.stage;
 
-import java.awt.Color;
-import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 import jp.libroworks.GraphicsInfo;
@@ -55,7 +53,7 @@ public class BossA extends GameChara {
 	}
 
 //	Ellipse2D.Double auraelli = new Ellipse2D.Double(0,0, 240, 240);
-	Line2D.Double lifemeter = new Line2D.Double(10, 60, 10, 60);
+//	Line2D.Double lifemeter = new Line2D.Double(10, 60, 10, 60);
 	@Override
 	public GameChara draw(GraphicsInfo ginfo, Stage stage) {
 //		if(this.life < 1) return super.draw(ginfo, stage);
@@ -78,9 +76,9 @@ public class BossA extends GameChara {
 		}
 
 		//ライフメーター
-		ginfo.g.setColor(Color.RED);
-		this.lifemeter.x2 = 10 + this.life;
-		ginfo.g.draw(this.lifemeter);
+//		ginfo.g.setColor(Color.RED);
+//		this.lifemeter.x2 = 10 + this.life;
+//		ginfo.g.draw(this.lifemeter);
 
 		return super.draw(ginfo, stage);
 	}

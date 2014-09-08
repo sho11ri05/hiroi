@@ -20,8 +20,9 @@ public abstract class Stage {
 
 
 	//敵の弾のデータを取得する
-	public abstract ArrayList<BulletChara> getBullets_E();
-
+	public abstract ArrayList<BulletChara> getYuki1();
+	public abstract ArrayList<BulletChara> getYuki2();
+	public abstract ArrayList<BulletChara> getAme();
 	//自機の弾のデータを取得する
 //	public abstract ArrayList<BulletChara> getBullets_J();
 
@@ -31,12 +32,20 @@ public abstract class Stage {
 	//空いている弾を探す
 	protected int searchidx = 0;
 	public BulletChara searchBullet(){
-		ArrayList<BulletChara> bullets_e = this.getBullets_E();
-		int m = bullets_e.size();
+		ArrayList<BulletChara> yuki1 = this.getYuki1();
+		int m = yuki1.size();
+		ArrayList<BulletChara> yuki2 = this.getYuki1();
+		m = yuki2.size();
+		ArrayList<BulletChara> ame = this.getYuki1();
+		m = ame.size();
 		//空き弾を探す
 		for(;this.searchidx < m; this.searchidx++){
-			if(bullets_e.get(this.searchidx).visible == false) {
-				return bullets_e.get(this.searchidx);
+			if(yuki1.get(this.searchidx).visible == false) {
+				return yuki1.get(this.searchidx);
+			}else if(yuki2.get(this.searchidx).visible == false){
+				return yuki2.get(this.searchidx);
+			}else if(ame.get(this.searchidx).visible == false){
+				return ame.get(this.searchidx);
 			}
 		}
 		//空きがないときはnullを返して発射キャンセル
@@ -58,4 +67,8 @@ public abstract class Stage {
 
 	public abstract boolean hitTestAll(GraphicsInfo ginfo);
 	public abstract boolean isBossLiving();
+	public void show(GraphicsInfo ginfo) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
 }

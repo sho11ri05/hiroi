@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import jp.libroworks.stage.Stage1;
-import jp.libroworks.stage.Stage2;
+//import jp.libroworks.stage.Stage2;
 import jp.libroworks.supers.GameDisplay;
 import jp.libroworks.supers.Stage;
 
@@ -29,10 +29,10 @@ public class MyGameDisplay extends GameDisplay {
 		this.title = new MyGameTitle();
 		this.main = new MyGameMain();
 		this.over = new MyGameOver();
-		this.clear = new MyStageClear();
+//		this.clear = new MyStageClear();
 		GameDisplay.current = this.title;
 		stagelist.add(new Stage1());
-		stagelist.add(new Stage2());
+//		stagelist.add(new Stage2());
 		this.stage = stagelist.get(0);
 	}
 
@@ -87,22 +87,14 @@ public class MyGameDisplay extends GameDisplay {
 
 		public void show(GraphicsInfo ginfo) {
 			MyGameDisplay.this.stage.draw(ginfo);
-//			if(MyGameDisplay.this.stage.hitTestAll(ginfo) == true){
-//				GameDisplay.current = MyGameDisplay.this.over;
-//				GameDisplay.current.setStartTime(ginfo.currenttime);
-//				SoundBox.singleton.playOneSHot(0);
-//			}
-//			if(MyGameDisplay.this.stage.isBossLiving() == false){
-//				GameDisplay.current = MyGameDisplay.this.clear;
-//				GameDisplay.current.setStartTime(ginfo.currenttime);
-//				SoundBox.singleton.playOneSHot(3);
-//			}
-			if(ginfo.currenttime - this.starttime > 180000){
+			if(ginfo.currenttime - this.starttime > 20000){
+				//180000に戻す
 				GameDisplay.current = MyGameDisplay.this.over;
 				GameDisplay.current.setStartTime(ginfo.currenttime);
 			}
 
 			if(MyGameDisplay.this.stage.hitTestAll(ginfo) == true){
+
 			}
 		}
 
@@ -112,8 +104,14 @@ public class MyGameDisplay extends GameDisplay {
 		}
 	}
 
+
+
 	//ゲームオーバー画面
-	class MyGameOver extends GameDisplay{
+	class Game extends Stage1{
+	}
+
+	class  MyGameOver extends GameDisplay{
+
 		@Override
 		public void show(GraphicsInfo ginfo) {
 			MyGameDisplay.this.stage.draw(ginfo);
@@ -124,37 +122,45 @@ public class MyGameDisplay extends GameDisplay {
 			int strw = fm.stringWidth(str) / 2;
 			ginfo.g.drawString(str, 400 - strw, 200);
 
-		}
 
-		@Override
-		public void loadMedia() {}
-	}
+//			ginfo.g.setColor(Color.BLUE);
+//			ginfo.g.setFont(MyGameDisplay.this.mfont);
+//			String str = "Total Score："+this.score;
+//			FontMetrics fm = ginfo.g.getFontMetrics();
+//			int strw = fm.stringWidth(str) / 2;
+//			ginfo.g.drawString(str, 650 - strw, 100);
 
-	//ステージクリア画面
-	class MyStageClear extends GameDisplay{
-		@Override
-		public void show(GraphicsInfo ginfo) {
-			MyGameDisplay.this.stage.draw(ginfo);
-			ginfo.g.setColor(Color.CYAN);
-			ginfo.g.setFont(MyGameDisplay.this.mfont);
-			String str = "ステージクリア";
-			FontMetrics fm = ginfo.g.getFontMetrics();
-			int strw = fm.stringWidth(str) / 2;
-			ginfo.g.drawString(str, 400 - strw, 200);
-
-			if(ginfo.currenttime - this.starttime > 5000){
-				MyGameDisplay.this.stagenum++;
-				if(MyGameDisplay.this.stagenum >= MyGameDisplay.this.stagelist.size() ){
-					GameDisplay.current = MyGameDisplay.this.title;
-				} else {
-					GameDisplay.current = MyGameDisplay.this.main;
-					MyGameDisplay.this.stage = MyGameDisplay.this.stagelist.get(MyGameDisplay.this.stagenum);
-					MyGameDisplay.this.stage.init(ginfo);
-				}
-			}
 		}
 
 		@Override
 		public void loadMedia() {}
 	}
 }
+
+	//ステージクリア画面
+//	class MyStageClear extends GameDisplay{
+//		@Override
+//		public void show(GraphicsInfo ginfo) {
+//			MyGameDisplay.this.stage.draw(ginfo);
+//			ginfo.g.setColor(Color.CYAN);
+//			ginfo.g.setFont(MyGameDisplay.this.mfont);
+//			String str = "ステージクリア";
+//			FontMetrics fm = ginfo.g.getFontMetrics();
+//			int strw = fm.stringWidth(str) / 2;
+//			ginfo.g.drawString(str, 400 - strw, 200);
+//
+//			if(ginfo.currenttime - this.starttime > 5000){
+//				MyGameDisplay.this.stagenum++;
+//				if(MyGameDisplay.this.stagenum >= MyGameDisplay.this.stagelist.size() ){
+//					GameDisplay.current = MyGameDisplay.this.title;
+//				} else {
+//					GameDisplay.current = MyGameDisplay.this.main;
+//					MyGameDisplay.this.stage = MyGameDisplay.this.stagelist.get(MyGameDisplay.this.stagenum);
+//					MyGameDisplay.this.stage.init(ginfo);
+//				}
+//			}
+//		}
+//
+//		@Override
+//		public void loadMedia() {}
+//	}
